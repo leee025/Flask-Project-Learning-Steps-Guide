@@ -50,8 +50,8 @@ Flask Web應用程式
 
 ```bash
 # 克隆專案
-git clone https://github.com/yourusername/Flask專案學習步驟指南.git
-cd Flask專案學習步驟指南
+git clone https://github.com/leee025/Flask-Project-Learning-Steps-Guide.git
+cd Flask-Project-Learning-Steps-Guide
 
 # 創建虛擬環境
 python -m venv .venv

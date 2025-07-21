@@ -1,0 +1,34 @@
+@echo off
+echo 正在上傳專案到 GitHub...
+echo Repository Name: Flask-Project-Learning-Steps-Guide
+
+set /p username="請輸入你的 GitHub 用戶名: "
+
+echo.
+echo 步驟 1: 檢查 Git 狀態...
+"C:\Program Files\Git\bin\git.exe" status
+
+echo.
+echo 步驟 2: 添加所有文件到 Git...
+"C:\Program Files\Git\bin\git.exe" add .
+
+echo.
+echo 步驟 3: 提交更改...
+"C:\Program Files\Git\bin\git.exe" commit -m "Initial commit: Flask Project Learning Steps Guide"
+
+echo.
+echo 步驟 4: 設置主分支為 main...
+"C:\Program Files\Git\bin\git.exe" branch -M main
+
+echo.
+echo 步驟 5: 添加遠程倉庫...
+"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/%username%/Flask-Project-Learning-Steps-Guide.git
+
+echo.
+echo 步驟 6: 推送到 GitHub...
+"C:\Program Files\Git\bin\git.exe" push -u origin main
+
+echo.
+echo 完成！請檢查你的 GitHub 倉庫: https://github.com/%username%/Flask-Project-Learning-Steps-Guide
+echo.
+pause
