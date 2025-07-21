@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Flask应用{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .navbar { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
+        .navbar-nav { display: flex; list-style: none; }
+        .navbar-nav li { margin-left: 15px; }
+        .flashes { background-color: #f8d7da; padding: 10px; margin-bottom: 20px; border-radius: 4px; }
+    </style>
+    {% block styles %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar-brand">
+                <a href="{{ url_for('index') }}">Flask应用</a>
+            </div>
+            <ul class="navbar-nav">
+                {% if session.get('user_id') %}
+                <li><a href="{{ url_for('user.user_list') }}">用户列表</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.login') }}">登录</a></li>
+                <li><a href="{{ url_for('auth.register') }}">注册</a></li>
+                {% endif %}
+            </ul>            
+        </nav>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flashes">
+            {% for message in messages %}
+            <div>{{ message }}</div>
+            {% endfor %}
+            
+        </div>
+        {% endif %}
+        {% endwith %}
+
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

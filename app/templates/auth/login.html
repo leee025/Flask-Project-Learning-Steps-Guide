@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>登录</title>
+</head>
+<body>
+    <h1>用户登录</h1>
+    
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flashes">
+        {% for message in messages %}
+        <div>{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+    
+    <form method="POST">
+        <div>
+            <label for="username">用户名:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div>
+            <label for="password">密码:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">登录</button>
+        </div>
+    </form>
+    
+    <div>
+        <p>还没有账号? <a href="{{ url_for('auth.register') }}">注册</a></p>
+    </div>
+</body>
+</html>

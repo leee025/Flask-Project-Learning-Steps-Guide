@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}用户详情 - {{ user.username }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1>用户详情</h1>
+    <div class="actions">
+        <a href="{{ url_for('user.edit_user', id=user.id) }}" class="btn btn-warning">编辑</a>
+        <a href="{{ url_for('user.user_list') }}" class="btn btn-secondary">返回列表</a>
+    </div>
+</div>
+
+<div class="user-detail">
+    <div class="detail-card">
+        <div class="detail-row">
+            <label>ID:</label>
+            <span>{{ user.id }}</span>
+        </div>
+        <div class="detail-row">
+            <label>用户名:</label>
+            <span>{{ user.username }}</span>
+        </div>
+        <div class="detail-row">
+            <label>邮箱:</label>
+            <span>{{ user.email }}</span>
+        </div>
+    </div>
+    
+    <div class="danger-zone">
+        <h3>危险操作</h3>
+        <form method="POST" action="{{ url_for('user.delete_user', id=user.id) }}" onsubmit="return confirm('确定要删除这个用户吗？此操作不可撤销！')">
+            <button type="submit" class="btn btn-danger">删除用户</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block styles %}
+<style>
+    .page-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .detail-card {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    .detail-row {
+        display: flex;
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+    }
+    .detail-row:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    .detail-row label {
+        font-weight: bold;
+        width: 100px;
+        color: #666;
+    }
+    .danger-zone {
+        background: #fff5f5;
+        border: 1px solid #fed7d7;
+        padding: 20px;
+        border-radius: 8px;
+    }
+    .danger-zone h3 {
+        color: #c53030;
+        margin-top: 0;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+</style>
+{% endblock %}
